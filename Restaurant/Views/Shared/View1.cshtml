@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <link href="~/Site.css" rel="stylesheet" />
+    @*<script src="~/modernizr-2.6.2.js"></script>*@
+    <script src="~/Scripts/jquery-3.1.0.min.js"></script>
+    <script src="~/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+
+    <style type="text/css">
+        hr {
+            border: solid #0091ea;
+        }
+       
+    </style>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          var string = document.location.pathname.replace('/Package Name/', '');
+          $('ul.nav > li > a[href="' + string + '"]').parent().addClass('active');
+      });
+  </script>
+</head>
+<body class="grey darken-4">
+
+        <div class="u" style="text-align:center">
+            <img id="profile-img" class="profile-img-card" src="/img/kocaeli-universitesi-logosu-4.png" />
+        </div>
+        <div class="blue-grey lighten-5">
+            <hr />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="nav nav-pills nav-stacked" id="menu">
+                            <li><a style=" color: black; font-size: 15px; font-weight: bold; " data-toggle="tab" href="/Home/Index">Anasayfa</a></li>
+                            <li><a style=" color: black; font-size: 15px; font-weight: bold; " href="/Home/kurulum">Kurulum <br />Dokümantasyonu</a></li>
+                            <br />
+                            <li><a style="  color: black; font-size: 15px; font-weight: bold; " href="/Home/sqlinjection">SQL Enjeksiyonu</a></li>
+                            <li><a style=" color: black; font-size: 15px; font-weight: bold; " href="/Home/XssEkle">XSS</a></li>
+                            <li><a style=" color: black; font-size: 15px; font-weight: bold; " href="/Home/Komutinjeciton">Komut Enjeksiyonu</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-9">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+        <div style="text-align: center; color: #757575;">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Zayıf Web Uygulaması v1.0.1</p>
+            </footer>
+        </div>
+</body>
+</html>

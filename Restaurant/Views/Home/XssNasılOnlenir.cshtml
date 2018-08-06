@@ -1,0 +1,7 @@
+﻿<div class="u" style="text-align:left">
+    <img id="profile-img" class="profile-img-card" src="/img/xssNasılOnlenir.png" />
+</div>
+<br />
+Kullanıcı tarafından textbox aracılığıyla alınan bilgiler yukarıdaki gibi veritabanındaki "Mesaj" adlı tabloya kaydedilir.Veriler veritabanına kaydedilirken "Yorum" kısmında saldırganların html işaretleme etiketleri veya komut dosya parcaları yazabileceği öngörülüp
+"Yorum" kısmında girilen  veriler string tipinde bir değişkene atanır.Bu değişkendeki veriler "Server.Html(değişken)" özelliği kullanılarak yanlızca htmlde görüntülenmek üzere karakterler kodlanır.Kodlama sırasında boşluk karakterleri kodlanmaz.Kodlanan karakterler.VeriTabanına
+kaydedilir.Kayıtlı verilerin veritabanından çekilip listelendiği sırada veriler düzyazı şeklinde listelenir.Böylelikle Xss açığının oluşması engellenir.

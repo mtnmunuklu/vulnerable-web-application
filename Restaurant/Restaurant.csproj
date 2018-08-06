@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8569B69B-6526-460D-A953-A982A891882F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Restaurant</RootNamespace>
+    <AssemblyName>Restaurant</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap-theme.css" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap.css" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap-3.3.6-dist\js\bootstrap.js" />
+    <Content Include="bootstrap-3.3.6-dist\js\bootstrap.min.js" />
+    <Content Include="bootstrap-3.3.6-dist\js\jquery-3.1.0.min.js" />
+    <Content Include="bootstrap-3.3.6-dist\js\npm.js" />
+    <Content Include="css\materialize.css" />
+    <Content Include="css\materialize.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap-theme.css.map" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="img\0%27Hata.png" />
+    <Content Include="img\1.jpg" />
+    <Content Include="img\10.jpg" />
+    <Content Include="img\1013.png" />
+    <Content Include="img\1013and1=1.png" />
+    <Content Include="img\1013and1=2.png" />
+    <Content Include="img\1013unionselect.png" />
+    <Content Include="img\105or1=1.png" />
+    <Content Include="img\11_320x264.jpg" />
+    <Content Include="img\12_320x268 %281%29.jpg" />
+    <Content Include="img\13_320x310 %281%29.jpg" />
+    <Content Include="img\14.jpg" />
+    <Content Include="img\14_320x153.jpg" />
+    <Content Include="img\16.jpg" />
+    <Content Include="img\17.jpg" />
+    <Content Include="img\18.jpg" />
+    <Content Include="img\19.jpg" />
+    <Content Include="img\1_320x223 %282%29.jpg" />
+    <Content Include="img\2.jpg" />
+    <Content Include="img\20.jpg" />
+    <Content Include="img\21.jpg" />
+    <Content Include="img\22.jpg" />
+    <Content Include="img\23.jpg" />
+    <Content Include="img\24.jpg" />
+    <Content Include="img\25.jpg" />
+    <Content Include="img\26.jpg" />
+    <Content Include="img\27.jpg" />
+    <Content Include="img\28.jpg" />
+    <Content Include="img\29.jpg" />
+    <Content Include="img\2_320x205.jpg" />
+    <Content Include="img\3.jpg" />
+    <Content Include="img\30.jpg" />
+    <Content Include="img\31.jpg" />
+    <Content Include="img\32.jpg" />
+    <Content Include="img\33_640x240.jpg" />
+    <Content Include="img\33_640x240_320x120.jpg" />
+    <Content Include="img\34.jpg" />
+    <Content Include="img\35.jpg" />
+    <Content Include="img\35_320x250.jpg" />
+    <Content Include="img\36.jpg" />
+    <Content Include="img\37.jpg" />
+    <Content Include="img\38.jpg" />
+    <Content Include="img\39.jpg" />
+    <Content Include="img\3_320x308.jpg" />
+    <Content Include="img\4.jpg" />
+    <Content Include="img\40.jpg" />
+    <Content Include="img\41.jpg" />
+    <Content Include="img\42.jpg" />
+    <Content Include="img\43.jpg" />
+    <Content Include="img\44.jpg" />
+    <Content Include="img\45.jpg" />
+    <Content Include="img\46.jpg" />
+    <Content Include="img\47.PNG" />
+    <Content Include="img\48.PNG" />
+    <Content Include="img\4_320x244.jpg" />
+    <Content Include="img\5.jpg" />
+    <Content Include="img\5_320x98 %281%29.jpg" />
+    <Content Include="img\6.jpg" />
+    <Content Include="img\7.jpg" />
+    <Content Include="img\8.jpg" />
+    <Content Include="img\9.jpg" />
+    <Content Include="img\99or1=1orderby1.png" />
+    <Content Include="img\99or1=1orderby2.png" />
+    <Content Include="img\99or1=1orderby3.png" />
+    <Content Include="img\99unionselect.png" />
+    <Content Include="img\9_320x217.jpg" />
+    <Content Include="img\kocaeli-universitesi-logosu-4.png" />
+    <Content Include="img\Komutinjectionneden.png" />
+    <Content Include="img\KomutinjectionOnleme.png" />
+    <Content Include="img\KomutSomur2.png" />
+    <Content Include="img\KomutSomur5.png" />
+    <Content Include="img\KomutSomur6.png" />
+    <Content Include="img\KomutSomurilk.png" />
+    <Content Include="img\komutsomurme1.png" />
+    <Content Include="img\komutsomurme2.png" />
+    <Content Include="img\komutsomurme3.png" />
+    <Content Include="img\komutsomurme4.png" />
+    <Content Include="img\komutsomurme5.png" />
+    <Content Include="img\komutsomurme6.png" />
+    <Content Include="img\nedeni.png" />
+    <Content Include="img\nedeni1.png" />
+    <Content Include="img\Optimized-15-min.jpg" />
+    <Content Include="img\Sqlinjecitonnasılonlenir.png" />
+    <Content Include="img\sqlinjectionnedenikod.png" />
+    <Content Include="img\xss1.png" />
+    <Content Include="img\xss2.png" />
+    <Content Include="img\xss3.png" />
+    <Content Include="img\xssNasılOnlenir.png" />
+    <Content Include="img\xssnedeni2.png" />
+    <Content Include="img\xssSayfası.png" />
+    <Content Include="js\materialize.js" />
+    <Content Include="js\materialize.min.js" />
+    <Content Include="materialize\css\materialize.css" />
+    <Content Include="materialize\css\materialize.min.css" />
+    <Content Include="materialize\js\materialize.js" />
+    <Content Include="materialize\js\materialize.min.js" />
+    <Content Include="materialize-v0.98.2.zip" />
+    <Content Include="materialize\fonts\roboto\Roboto-Bold.woff" />
+    <Content Include="materialize\fonts\roboto\Roboto-Bold.woff2" />
+    <Content Include="materialize\fonts\roboto\Roboto-Light.woff" />
+    <Content Include="materialize\fonts\roboto\Roboto-Light.woff2" />
+    <Content Include="materialize\fonts\roboto\Roboto-Medium.woff" />
+    <Content Include="materialize\fonts\roboto\Roboto-Medium.woff2" />
+    <Content Include="materialize\fonts\roboto\Roboto-Regular.woff" />
+    <Content Include="materialize\fonts\roboto\Roboto-Regular.woff2" />
+    <Content Include="materialize\fonts\roboto\Roboto-Thin.woff" />
+    <Content Include="materialize\fonts\roboto\Roboto-Thin.woff2" />
+    <Content Include="materialize\LICENSE" />
+    <Content Include="materialize\README.md" />
+    <Content Include="fonts\roboto\Roboto-Bold.woff" />
+    <Content Include="fonts\roboto\Roboto-Bold.woff2" />
+    <Content Include="fonts\roboto\Roboto-Light.woff" />
+    <Content Include="fonts\roboto\Roboto-Light.woff2" />
+    <Content Include="fonts\roboto\Roboto-Medium.woff" />
+    <Content Include="fonts\roboto\Roboto-Medium.woff2" />
+    <Content Include="fonts\roboto\Roboto-Regular.woff" />
+    <Content Include="fonts\roboto\Roboto-Regular.woff2" />
+    <Content Include="fonts\roboto\Roboto-Thin.woff" />
+    <Content Include="fonts\roboto\Roboto-Thin.woff2" />
+    <EntityDeploy Include="Models\myModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>myModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\myModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>myModel.edmx</DependentUpon>
+      <LastGenOutput>myModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\myModel.edmx.diagram">
+      <DependentUpon>myModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\myModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>myModel.edmx</DependentUpon>
+      <LastGenOutput>myModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.0.js" />
+    <Content Include="Scripts\jquery-3.1.0.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="img\xssNedeni.png" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GenelMenu.cs">
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Masa.cs">
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Menu.cs">
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mesaj.cs">
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\myModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>myModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\myModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\myModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>myModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personel.cs">
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Siparis.cs">
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\siparismenü.cs">
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>myModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Shared\View1.cshtml" />
+    <Content Include="Views\Home\kurulum.cshtml" />
+    <Content Include="Views\Home\yanlis.cshtml" />
+    <Content Include="Views\Home\SqlKaynakKod.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\sqlinjection.cshtml" />
+    <Content Include="Views\Home\SqlinjectionYardım.cshtml" />
+    <Content Include="Views\Home\sqlinjectionnedeni.cshtml" />
+    <Content Include="Views\Home\XssEkle.cshtml" />
+    <Content Include="Views\Home\XssListele.cshtml" />
+    <Content Include="Views\Home\XssKaynakKod.cshtml" />
+    <Content Include="Views\Home\XssYardım.cshtml" />
+    <Content Include="Views\Home\SqlinjectionNasılOnlenir.cshtml" />
+    <Content Include="Views\Home\Xssnedeni.cshtml" />
+    <Content Include="Views\Home\XssNasılOnlenir.cshtml" />
+    <Content Include="Views\Home\Komutinjeciton.cshtml" />
+    <Content Include="Views\Home\KomutinjectionKaynakKod.cshtml" />
+    <Content Include="Views\Home\KomutinjectionYardım.cshtml" />
+    <Content Include="Views\Home\KomutinjectionNedeni.cshtml" />
+    <Content Include="Views\Home\KomutinjectionNasılOnlenir.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53180</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53051/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SiparisKontrolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GenelMenu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Genelad" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Masa">
+          <Key>
+            <PropertyRef Name="MasaId" />
+          </Key>
+          <Property Name="MasaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasaAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="aktif" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="TürId" />
+          </Key>
+          <Property Name="TürId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TürAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Genelid" Type="int" Nullable="false" />
+          <Property Name="Fiyat" Type="int" Nullable="false" />
+          <Property Name="Aktif" Type="int" Nullable="false" />
+          <Property Name="UyeResimAdi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Sure" Type="int" />
+        </EntityType>
+        <EntityType Name="Mesaj">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Yorum" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Yetki" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Aktiflik" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="siparisId" />
+          </Key>
+          <Property Name="siparisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AscıId" Type="int" />
+          <Property Name="GarsonId" Type="int" Nullable="false" />
+          <Property Name="MasaId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+          <Property Name="SpDurum" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Yetki" Type="int" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+          <Property Name="YenilemeTarih" Type="datetime" Nullable="false" />
+          <Property Name="TpFiyat" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siparismenü">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menüId" Type="int" Nullable="false" />
+          <Property Name="siparisId" Type="int" Nullable="false" />
+          <Property Name="Adet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Menu_GenelMenu">
+          <End Role="GenelMenu" Type="Self.GenelMenu" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenelMenu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="Genelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Masa">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="MasaId" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="MasaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="GarsonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Personel1">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="AscıId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siparismenü_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="siparismenü" Type="Self.siparismenü" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="TürId" />
+            </Principal>
+            <Dependent Role="siparismenü">
+              <PropertyRef Name="menüId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siparismenü_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="1" />
+          <End Role="siparismenü" Type="Self.siparismenü" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="siparisId" />
+            </Principal>
+            <Dependent Role="siparismenü">
+              <PropertyRef Name="siparisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SiparisKontrolModelStoreContainer">
+          <EntitySet Name="GenelMenu" EntityType="Self.GenelMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Masa" EntityType="Self.Masa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesaj" EntityType="Self.Mesaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siparismenü" EntityType="Self.siparismenü" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Menu_GenelMenu" Association="Self.FK_Menu_GenelMenu">
+            <End Role="GenelMenu" EntitySet="GenelMenu" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Masa" Association="Self.FK_Siparis_Masa">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Personel" Association="Self.FK_Siparis_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Personel1" Association="Self.FK_Siparis_Personel1">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siparismenü_Menu" Association="Self.FK_siparismenü_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="siparismenü" EntitySet="siparismenü" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siparismenü_Siparis" Association="Self.FK_siparismenü_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="siparismenü" EntitySet="siparismenü" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SiparisKontrolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GenelMenu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Genelad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_Menu_GenelMenu" FromRole="GenelMenu" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="Masa">
+          <Key>
+            <PropertyRef Name="MasaId" />
+          </Key>
+          <Property Name="MasaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasaAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aktif" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Masa" FromRole="Masa" ToRole="Siparis" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="TürId" />
+          </Key>
+          <Property Name="TürId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TürAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Genelid" Type="Int32" Nullable="false" />
+          <Property Name="Fiyat" Type="Int32" Nullable="false" />
+          <Property Name="Aktif" Type="Int32" Nullable="false" />
+          <Property Name="UyeResimAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Sure" Type="Int32" />
+          <NavigationProperty Name="GenelMenu" Relationship="Self.FK_Menu_GenelMenu" FromRole="Menu" ToRole="GenelMenu" />
+          <NavigationProperty Name="siparismenü" Relationship="Self.FK_siparismenü_Menu" FromRole="Menu" ToRole="siparismenü" />
+        </EntityType>
+        <EntityType Name="Mesaj">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Yetki" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aktiflik" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Personel" FromRole="Personel" ToRole="Siparis" />
+          <NavigationProperty Name="Siparis1" Relationship="Self.FK_Siparis_Personel1" FromRole="Personel" ToRole="Siparis" />
+        </EntityType>
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="siparisId" />
+          </Key>
+          <Property Name="siparisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AscıId" Type="Int32" />
+          <Property Name="GarsonId" Type="Int32" Nullable="false" />
+          <Property Name="MasaId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SpDurum" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Yetki" Type="Int32" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YenilemeTarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TpFiyat" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Masa" Relationship="Self.FK_Siparis_Masa" FromRole="Siparis" ToRole="Masa" />
+          <NavigationProperty Name="Personel" Relationship="Self.FK_Siparis_Personel" FromRole="Siparis" ToRole="Personel" />
+          <NavigationProperty Name="Personel1" Relationship="Self.FK_Siparis_Personel1" FromRole="Siparis" ToRole="Personel" />
+          <NavigationProperty Name="siparismenü" Relationship="Self.FK_siparismenü_Siparis" FromRole="Siparis" ToRole="siparismenü" />
+        </EntityType>
+        <EntityType Name="siparismenü">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menüId" Type="Int32" Nullable="false" />
+          <Property Name="siparisId" Type="Int32" Nullable="false" />
+          <Property Name="Adet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_siparismenü_Menu" FromRole="siparismenü" ToRole="Menu" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_siparismenü_Siparis" FromRole="siparismenü" ToRole="Siparis" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Menu_GenelMenu">
+          <End Role="GenelMenu" Type="Self.GenelMenu" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenelMenu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="Genelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Masa">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="MasaId" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="MasaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siparismenü_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="siparismenü" Type="Self.siparismenü" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="TürId" />
+            </Principal>
+            <Dependent Role="siparismenü">
+              <PropertyRef Name="menüId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="GarsonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Personel1">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="AscıId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siparismenü_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="1" />
+          <End Role="siparismenü" Type="Self.siparismenü" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="siparisId" />
+            </Principal>
+            <Dependent Role="siparismenü">
+              <PropertyRef Name="siparisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SiparisKontrolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GenelMenu" EntityType="Self.GenelMenu" />
+          <EntitySet Name="Masa" EntityType="Self.Masa" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="Mesaj" EntityType="Self.Mesaj" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" />
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" />
+          <EntitySet Name="siparismenü" EntityType="Self.siparismenü" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Menu_GenelMenu" Association="Self.FK_Menu_GenelMenu">
+            <End Role="GenelMenu" EntitySet="GenelMenu" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Masa" Association="Self.FK_Siparis_Masa">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siparismenü_Menu" Association="Self.FK_siparismenü_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="siparismenü" EntitySet="siparismenü" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Personel" Association="Self.FK_Siparis_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Personel1" Association="Self.FK_Siparis_Personel1">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siparismenü_Siparis" Association="Self.FK_siparismenü_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="siparismenü" EntitySet="siparismenü" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SiparisKontrolModelStoreContainer" CdmEntityContainer="SiparisKontrolEntities">
+          <EntitySetMapping Name="GenelMenu">
+            <EntityTypeMapping TypeName="SiparisKontrolModel.GenelMenu">
+              <MappingFragment StoreEntitySet="GenelMenu">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="Genelad" ColumnName="Genelad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Masa">
+            <EntityTypeMapping TypeName="SiparisKontrolModel.Masa">
+              <MappingFragment StoreEntitySet="Masa">
+                <ScalarProperty Name="MasaId" ColumnName="MasaId" />
+                <ScalarProperty Name="MasaAdi" ColumnName="MasaAdi" />
+                <ScalarProperty Name="aktif" ColumnName="aktif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="SiparisKontrolModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="TürId" ColumnName="TürId" />
+                <ScalarProperty Name="TürAdi" ColumnName="TürAdi" />
+                <ScalarProperty Name="Genelid" ColumnName="Genelid" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="UyeResimAdi" ColumnName="UyeResimAdi" />
+                <ScalarProperty Name="Sure" ColumnName="Sure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesaj">
+            <EntityTypeMapping TypeName="SiparisKontrolModel.Mesaj">
+              <MappingFragment StoreEntitySet="Mesaj">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personel">
+            <EntityTypeMapping TypeName="SiparisKontrolModel.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Aktiflik" ColumnName="Aktiflik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siparis">
+            <EntityTypeMapping TypeName="SiparisKontrolModel.Siparis">
+              <MappingFragment StoreEntitySet="Siparis">
+                <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+                <ScalarProperty Name="AscıId" ColumnName="AscıId" />
+                <ScalarProperty Name="GarsonId" ColumnName="GarsonId" />
+                <ScalarProperty Name="MasaId" ColumnName="MasaId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="SpDurum" ColumnName="SpDurum" />
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="YenilemeTarih" ColumnName="YenilemeTarih" />
+                <ScalarProperty Name="TpFiyat" ColumnName="TpFiyat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siparismenü">
+            <EntityTypeMapping TypeName="SiparisKontrolModel.siparismenü">
+              <MappingFragment StoreEntitySet="siparismenü">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="menüId" ColumnName="menüId" />
+                <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SiparisKontrolModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

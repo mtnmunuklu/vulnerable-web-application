@@ -1,0 +1,91 @@
+﻿@model List<Restaurant.Models.Mesaj>
+@{
+    ViewBag.Title = "Komutinjeciton";
+    Layout = "~/Views/Shared/View1.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+<div>
+    <h4>Komut Enjeksiyonu</h4>
+    <p>Command Injection, yani komut enjeksiyonu saldırganın zafiyet barındıran bir uygulama üzerinden hedef sistemde dilediği komutları çalıştırabilmesine denir.
+     Komut ile kastedilen şey Windows'ta CMD ve Linux'ta Terminal pencerelerine girilen sistem komutlarıdır. Literatürde Shell kodlaması diye de geçer. Command Injection saldırısı büyük oranda yetersiz input denetleme mekanizması nedeniyle gerçekleşmektedir.</p>
+</div>
+<br />
+@using (Html.BeginForm("Komutinjeciton", "Home", FormMethod.Post))
+    {
+<div style="width: 50%; margin: 0 auto; text-align: center;">
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputEmail3">UserName</label>
+                <input type="text" class="form-control" placeholder="Ip adress && cmd komutu.." name="name">
+            </div>
+
+            <button type="submit" class="btn btn-info">Gonder</button>
+        </form>
+    </div>
+</div>
+        if (Model!= null)
+        {
+            foreach (var l in Model)
+            {
+                <p>@l.Yorum</p>
+            }
+            
+        }
+}
+<br />
+<br />
+<br />
+<div style="text-align:right">
+    <div class="col-md-10">
+        <button data-target="modal2" class="btn modal-trigger">Kaynak Kod</button>
+    </div>
+    <div class="col-md-2">
+        <button data-target="modal1" class="btn modal-trigger">Yardım</button>
+    </div>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+
+        @Html.Partial("KomutinjectionYardım")
+        <br />
+        <ul class="collapsible" data-collapsible="expandable">
+            <li>
+                <div class="collapsible-header active"><i class="mdi-maps-place"></i><p style="font-weight:bold;">Neden Olur?</p></div>
+                <div class="collapsible-body"><span>@Html.Partial("KomutinjectionNedeni")</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header active"><i class="mdi-maps-place"></i><p style="font-weight:bold;">Nasıl Önlenir?</p></div>
+                <div class="collapsible-body"><span>@Html.Partial("KomutinjectionNasılOnlenir")</span></div>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+</div>
+<div id="modal2" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Kaynak Kod</h4>
+        @Html.Partial("KomutinjectionKaynakKod")
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+    });
+</script>

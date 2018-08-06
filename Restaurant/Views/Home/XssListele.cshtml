@@ -1,0 +1,28 @@
+﻿@model List<Restaurant.Models.Mesaj>
+@{
+    ViewBag.Title = "XssListele";
+    Layout = "~/Views/Shared/View1.cshtml";
+}
+
+<div class="col-sm-6">
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Email</th>
+                <th>Yorum</th>
+            </tr>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.AdSoyad</td>
+                    <td>@p.Email</td>
+                    <td>@Html.Raw(p.Yorum)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+

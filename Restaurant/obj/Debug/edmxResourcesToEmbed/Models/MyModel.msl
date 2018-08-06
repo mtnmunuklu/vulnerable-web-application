@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SiparisKontrolModelStoreContainer" CdmEntityContainer="SiparisKontrolEntities">
+    <EntitySetMapping Name="GenelMenu">
+      <EntityTypeMapping TypeName="SiparisKontrolModel.GenelMenu">
+        <MappingFragment StoreEntitySet="GenelMenu">
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="Genelad" ColumnName="Genelad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Masa">
+      <EntityTypeMapping TypeName="SiparisKontrolModel.Masa">
+        <MappingFragment StoreEntitySet="Masa">
+          <ScalarProperty Name="MasaId" ColumnName="MasaId" />
+          <ScalarProperty Name="MasaAdi" ColumnName="MasaAdi" />
+          <ScalarProperty Name="aktif" ColumnName="aktif" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="SiparisKontrolModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="TürId" ColumnName="TürId" />
+          <ScalarProperty Name="TürAdi" ColumnName="TürAdi" />
+          <ScalarProperty Name="Genelid" ColumnName="Genelid" />
+          <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+          <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+          <ScalarProperty Name="UyeResimAdi" ColumnName="UyeResimAdi" />
+          <ScalarProperty Name="Sure" ColumnName="Sure" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mesaj">
+      <EntityTypeMapping TypeName="SiparisKontrolModel.Mesaj">
+        <MappingFragment StoreEntitySet="Mesaj">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="SiparisKontrolModel.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Aktiflik" ColumnName="Aktiflik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Siparis">
+      <EntityTypeMapping TypeName="SiparisKontrolModel.Siparis">
+        <MappingFragment StoreEntitySet="Siparis">
+          <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+          <ScalarProperty Name="AscıId" ColumnName="AscıId" />
+          <ScalarProperty Name="GarsonId" ColumnName="GarsonId" />
+          <ScalarProperty Name="MasaId" ColumnName="MasaId" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="SpDurum" ColumnName="SpDurum" />
+          <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="YenilemeTarih" ColumnName="YenilemeTarih" />
+          <ScalarProperty Name="TpFiyat" ColumnName="TpFiyat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="siparismenü">
+      <EntityTypeMapping TypeName="SiparisKontrolModel.siparismenü">
+        <MappingFragment StoreEntitySet="siparismenü">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="menüId" ColumnName="menüId" />
+          <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+          <ScalarProperty Name="Adet" ColumnName="Adet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SiparisKontrolModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

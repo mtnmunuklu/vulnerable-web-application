@@ -1,0 +1,96 @@
+﻿@model Restaurant.Models.Mesaj
+@{
+    ViewBag.Title = "XssEkle";
+    Layout = "~/Views/Shared/View1.cshtml";
+}
+  <div>
+    <h4>XSS (Cross Site Security)</h4>
+    <p>Saldırganın veri girişi yaparken zararlı kod enjekte edmesiyle oluşan bir güvenlik saldırısıdır.
+     Bu kod bir javascript, vbscript veya başka bir kodlama kodu olabilir.Kod son kullanıcının tarayıcısına verildiğinde bu kod çalıştırılabilir ve çerezlere, oturumlara, yerel dosyalara vb. erişebilir.</p>
+</div>
+<br />
+<br />
+@using (Html.BeginForm("XssEkle", "Home", FormMethod.Post))
+{
+<div class=" col-md-7">
+    <div class="editor-label">
+        @Html.LabelFor(a => a.AdSoyad)
+    </div>
+
+    <div class="editor-field">
+        @*This code generate text area with 5 row and 25 cols*@
+        @Html.TextBoxFor(a => a.AdSoyad)
+        @Html.ValidationMessageFor(a => a.AdSoyad)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(a => a.Email)
+    </div>
+
+    <div class="editor-field">
+        @*This code generate text area with 5 row and 25 cols*@
+        @Html.TextBoxFor(a => a.Email)
+        @Html.ValidationMessageFor(a => a.Email)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(a => a.Yorum)
+    </div>
+
+    <div class="editor-field">
+        @*This code generate text area with 5 row and 25 cols*@
+        @Html.TextAreaFor(model => model.Yorum, new { rows = 5, cols = 25 })
+        @Html.ValidationMessageFor(model => model.Yorum)
+    </div>
+    <input type="submit" class="btn btn-info" value="Gonder" />
+</div>
+}
+<br />
+<br />
+<br />
+<div style="text-align:right">
+    <div class="col-md-10">
+        <button data-target="modal2" class="btn modal-trigger">Kaynak Kod</button>
+    </div>
+    <div class="col-md-2">
+        <button data-target="modal1" class="btn modal-trigger">Yardım</button>
+    </div>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+
+        @Html.Partial("XssYardım")
+        <br />
+        <ul class="collapsible" data-collapsible="expandable">
+            <li>
+                <div class="collapsible-header active"><i class="mdi-maps-place"></i><p style="font-weight:bold;">Neden Olur?</p></div>
+                <div class="collapsible-body"><span>@Html.Partial("Xssnedeni")</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header active"><i class="mdi-maps-place"></i><p style="font-weight:bold;">Nasıl Önlenir?</p></div>
+                <div class="collapsible-body"><span>@Html.Partial("XssNasılOnlenir")</span></div>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+</div>
+<div id="modal2" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Kaynak Kod</h4>
+        @Html.Partial("XssKaynakKod")
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+    });
+</script>

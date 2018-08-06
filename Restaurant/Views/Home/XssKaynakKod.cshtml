@@ -1,0 +1,25 @@
+﻿
+<div>
+    public ActionResult XssEkle()<br />
+    {<br />
+
+    return View();<br />
+    }<br />
+    [HttpPost]<br />
+    [ValidateInput(false)]<br />
+    public ActionResult XssEkle(Mesaj mesaj)<br />
+    {<br />
+    if (ModelState.IsValid)<br />
+    {<br />
+    db.Mesaj.Add(mesaj<br />
+    db.SaveChanges();<br />
+    }<br />
+    return RedirectToAction("XssListele");<br />
+    }<br />
+    public ActionResult XssListele()<br />
+    {<br />
+    var liste = db.Mesaj.ToList();<br />
+    return View(liste<br />
+    }<br />
+
+</div>

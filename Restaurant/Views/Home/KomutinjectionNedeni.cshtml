@@ -1,0 +1,11 @@
+﻿
+<div>
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/Komutinjectionneden.png" />
+    </div>
+    <br />
+    Bunun sebebi çoğunlukla yazılım iç güvenlik önlemlerinin alınmamasıyla alakalı bir durumdur. Yukarıda görüldüğü gibi Textbox aracılığıyla
+    alınan name parametresi hehangi bir filtreleme ve kontrol işleminden geçmeden + operatörü konularak "strCmdText" eklenerek  Process.Start'a işlenmiştir.Bu durum saldırganlar tarafından
+    Temel olarak geçerli komutlara meta karakterler(&,|,//) konularak birden fazla komutun Process.Starta işlenmesine neden olabilir.Bu durumun
+    oluşması komut enjeksiyon açığına neden olmaktadır.
+</div>

@@ -1,0 +1,97 @@
+﻿@model List<Restaurant.Models.Personel>
+
+@{
+    ViewBag.Title = "sqlinjection";
+    Layout = "~/Views/Shared/View1.cshtml";
+}
+@{
+    var grid = new WebGrid(Model);
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    
+    <div>
+        <h4>SQL Enjeksiyonu</h4>
+        <p>Sql injection, Sql sorgularının arasına dışarıdan müdahale de bulunarak, veri ekleme işlemine verilen genel isimdir. Web uygulamalarında kullanıcılar tarafından girilen veriler ile dinamik Sql cümleleri oluşturulur. Bu cümleler oluşturulurken araya giren herhangi bir meta-karakter Sql injection’a neden olabilmektedir.</p>
+    </div>
+    @using (Html.BeginForm("sqlinjection", "Home", FormMethod.Post))
+    {
+        <div style="width: 50%; margin: 0 auto; text-align: center;">
+            <div>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail3">UserName</label>
+                        <input type="text" class="form-control" placeholder="UserId ye göre Sql İnjection yapınız" name="name">
+                    </div>
+
+                    <button type="submit" class="btn btn-info">Gonder</button>
+                </form>
+            </div>
+            @if (Model != null)
+            {
+                <div>
+                    @grid.GetHtml(
+      columns: grid.Columns(
+      grid.Column("FullName", "Ad Soyad"),
+      grid.Column("UserName", "Kullanıcı Adı")
+       ))
+                </div>
+            }
+
+        </div>
+    }
+<br />
+<br />
+<br />
+    <div style="text-align:right">
+    <div class="col-md-10">
+    <button data-target="modal2" class="btn modal-trigger">Kaynak Kod</button>
+    </div>
+    <div class="col-md-2">
+        <button data-target="modal1" class="btn modal-trigger">Yardım</button>
+    </div>
+    </div>
+<!-- Modal Structure -->
+ <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+  
+        @Html.Partial("SqlinjectionYardım")
+        <br />
+        <ul class="collapsible" data-collapsible="expandable">
+            <li>
+                <div class="collapsible-header active"><i class="mdi-maps-place"></i><p style="font-weight:bold;">Neden Olur?</p></div>
+                <div class="collapsible-body"><span>@Html.Partial("Sqlinjectionnedeni")</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header active"><i class="mdi-maps-place"></i><p style="font-weight:bold;">Nasıl Önlenir?</p></div>
+                <div class="collapsible-body"><span>@Html.Partial("SqlinjectionNasılOnlenir")</span></div>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+</div>
+<div id="modal2" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Kaynak Kod</h4>
+        @Html.Partial("SqlKaynakKod")
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+    });
+</script>

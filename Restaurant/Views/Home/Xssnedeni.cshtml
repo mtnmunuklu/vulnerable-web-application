@@ -1,0 +1,13 @@
+﻿<div>
+    <div class="u" style="text-align:left">
+        <img id="profile-img" class="profile-img-card" src="/img/xssNedeni.png" />
+    </div>
+</div>
+<br />
+Kullanıcı tarafından textbox aracılığıyla alınan bilgiler yukarıdaki gibi veritabanındaki "Mesaj" adlı tabloya kaydedilir.Veriler veritabanına
+ kaydedilirken <b>Yorum</b>kısmında saldırganların html işaretleme etiketleri veya komut dosya parcaları yazabileceği öngörülmeyip bu kısımda hehangi bir
+ bir filtreleme veya kontrol işleminden geçirilmeden ilgili kısmın veritabanına eklenmesi ve ActionResult'un üzerindeki ValidateInput degerinin 
+ false yapılması kayıtlı verilerin veritabanından çekilip listelendiği esnada Xss açıgının oluşmasına sebep olmaktadır.
+<div class="u" style="text-align:left">
+    <img id="profile-img" class="profile-img-card" src="/img/xssNedeni2.png" />
+</div>
